@@ -10,13 +10,13 @@ public class QuarryMachineConfig {
     public static final int QUARRY_MINE_ALL_CONFIG = 2;
 
     @Config(config = "machines", category = "quarry", key = "QuarryMaxInput", comment = "Quarry Max Input (Value in EU)")
-    public static int quarryMaxInput = 128;
+    public static int quarryMaxInput = 8192;
 
     @Config(config = "machines", category = "quarry", key = "QuarryMaxInputOverclockerMultipier", comment = "Quarry Max Input Multiplier by overclocker upgrades")
-    public static double quarryMaxInputOverclockerMultipier = 6;
+    public static double quarryMaxInputOverclockerMultipier = 16;
 
     @Config(config = "machines", category = "quarry", key = "QuarryMaxEnergy", comment = "Quarry Max Energy (Value in EU)")
-    public static int quarryMaxEnergy = 100_000;
+    public static int quarryMaxEnergy = 100_000_000;
 
     @Config(config = "machines", category = "quarry", key = "QuarryEnergyPerExcavation", comment = "Quarry Energy Per Excavation (Value in EU)")
     public static int quarryEnergyPerExcavation = 6_000;
@@ -25,10 +25,10 @@ public class QuarryMachineConfig {
     public static int quarryTiksPerExcavation = 60;
 
     @Config(config = "machines", category = "quarry", key = "QuarryMinTiksPerExcavation", comment = "Quarry Min Tiks Per Excavation (with all 4 upgrdes), 20 ticks - 1 second")
-    public static int quarryMinTiksPerExcavation = 8;
+    public static int quarryMinTiksPerExcavation = 4;
 
     @Config(config = "machines", category = "quarry", key = "QuarryExtenderWorkRadius", comment = "Quarry Extender Work Radius, added radius to SqrWorkRadius for each level, in blocks")
-    public static List<Double> quarrySqrWorkRadiusByUpgradeLevel = Arrays.asList(7.0, 12.0, 18.0, 24.0);
+    public static List<Double> quarrySqrWorkRadiusByUpgradeLevel = Arrays.asList(7.0, 15.0, 23.0, 31.0);
 
     @Config(config = "machines", category = "quarry", key = "QuarryAccessibleExcavationModes", comment = "Quarry Accessible Excavation Modes, 1 - ores only, 2 - all only, 3 - all and ores")
     public static int quarryAccessibleExcavationModes = 3;

@@ -18,7 +18,7 @@ import java.util.Queue;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
-import net.minecraft.block.Material;
+//import net.minecraft.block.Material;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
@@ -26,12 +26,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.quarrymod.block.QuarryBlock;
 import net.quarrymod.block.QuarryBlock.DisplayState;
@@ -437,7 +438,7 @@ public class QuarryBlockEntity extends PowerAcceptorBlockEntity implements ITool
             && !(block instanceof FluidBlock)
             && state.getHardness(world, blockPos) >= 0f
             && !isDrillTube(state)
-            && (getMineAll() || isOre(Registry.BLOCK.getId(block).toString()));
+            && (getMineAll() || isOre(Registries.BLOCK.getId(block).toString()));
     }
 
     private boolean isOre(String id) {
@@ -587,7 +588,7 @@ public class QuarryBlockEntity extends PowerAcceptorBlockEntity implements ITool
     private static boolean holeFillerFilter(ItemStack stack) {
         Item item = stack.getItem();
         if (item instanceof BlockItem blockItem) {
-            return blockItem.getBlock().getDefaultState().getMaterial().equals(Material.STONE);
+            return blockItem.getBlock().getDefaultState().isSolid();
         }
         return false;
     }

@@ -33,12 +33,14 @@ import reborncore.common.screen.BuiltScreenHandlerProvider;
 public class GuiType<T extends BlockEntity> implements IMachineGuiHandler {
 
     private static final Map<Identifier, GuiType<?>> TYPES = new HashMap<>();
-    public static final GuiType<QuarryBlockEntity> QUARRY = register("quarry", () -> () -> QuarryScreen::new);
+
 
     private static <T extends BlockEntity> GuiType<T> register(String id,
         Supplier<Supplier<GuiFactory<T>>> factorySupplierMeme) {
         return register(new Identifier(QuarryMod.MOD_ID, id), factorySupplierMeme);
     }
+
+    public static final GuiType<QuarryBlockEntity> QUARRY = register("quarry", () -> () -> QuarryScreen::new);
 
     private static <T extends BlockEntity> GuiType<T> register(Identifier identifier,
         Supplier<Supplier<GuiFactory<T>>> factorySupplierMeme) {
@@ -63,7 +65,7 @@ public class GuiType<T extends BlockEntity> implements IMachineGuiHandler {
 
     private ExtendedClientHandlerFactory<BuiltScreenHandler> getScreenHandlerFactory() {
         return (syncId, playerInventory, packetByteBuf) -> {
-            final BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(packetByteBuf.readBlockPos());
+            final BlockEntity blockEntity = playerInventory.player.getWorld().getBlockEntity(packetByteBuf.readBlockPos());
             BuiltScreenHandler screenHandler = ((BuiltScreenHandlerProvider) blockEntity).createScreenHandler(syncId,
                 playerInventory.player);
 
@@ -96,7 +98,7 @@ public class GuiType<T extends BlockEntity> implements IMachineGuiHandler {
                 @Nullable
                 @Override
                 public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-                    final BlockEntity blockEntity = player.world.getBlockEntity(pos);
+                    final BlockEntity blockEntity = player.getWorld().getBlockEntity(pos);
                     BuiltScreenHandler screenHandler = ((BuiltScreenHandlerProvider) blockEntity).createScreenHandler(
                         syncId, player);
                     screenHandler.setType(screenHandlerType);
